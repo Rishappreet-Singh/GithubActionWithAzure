@@ -27,12 +27,12 @@ jobs:
 #         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
 #         resourceGroupName: ${{ secrets.AZURE_RG }}
 #         template: ./v-net.json
-    - name: Azure run
-      run : |
-        az network vnet create \
-        --name v-netber \
-        --resource-group user_KPLMMZYKUL_ResourceGroup \
-        --subnet-name subnet-1 --subnet-prefixes 10.0.1.0/24
+#     - name: Azure run
+#       run : |
+#         az network vnet create \
+#         --name v-netber \
+#         --resource-group user_KPLMMZYKUL_ResourceGroup \
+#         --subnet-name subnet-1 --subnet-prefixes 10.0.1.0/24
         
     - name: Terraform Init
       run: terraform init 
