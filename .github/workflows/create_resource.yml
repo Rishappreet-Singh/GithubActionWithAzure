@@ -24,6 +24,6 @@ jobs:
     - name: Run Arm
       uses: azure/arm-deploy@v1
       with: 
-        subcriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./v-net.json
