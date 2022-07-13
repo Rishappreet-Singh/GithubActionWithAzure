@@ -24,11 +24,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+#     - name: Azure-connect
+#       uses: azure/login@v1
+#       with: 
+#         creds: ${{secrets.AZURE_CREDS}}
     - name: Azure-connect
-      uses: azure/login@v1
-      with: 
-        creds: ${{secrets.AZURE_CREDS}}
-#       run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} -t ${{ secrets.TENANT_ID }}
+      run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} -t ${{ secrets.TENANT_ID }}
       
 #     - name: Run Arm
 #       uses: azure/arm-deploy@v1
