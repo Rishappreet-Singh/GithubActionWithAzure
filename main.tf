@@ -10,8 +10,8 @@ provider "azurerm" {
   features {}
 }
 
-local{
-  name     = "user_TXM4UKZY08_ResourceGroup"
+locals {
+  name     = "user_VMUQTRRGUZ_ResourceGroup"
   location = "West Europe"
 }
 
