@@ -1,3 +1,7 @@
+provider "azurerm" {
+  features {}
+}
+
 resource "azurerm_resource_group" "resource" {
   name     = "azure-functions-rg"
   location = "West Europe"
