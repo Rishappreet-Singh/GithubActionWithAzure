@@ -10,31 +10,31 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "resource" {
-  name     = "resources"
+local{
+  name     = "user_TXM4UKZY08_ResourceGroup"
   location = "West Europe"
 }
 
 resource "azurerm_storage_account" "storage" {
   name                     = "linuxfunctionappsa"
-  resource_group_name      = azurerm_resource_group.resource.name
-  location                 = azurerm_resource_group.resource.location
+  resource_group_name      = local.name
+  location                 = local.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
 
 resource "azurerm_service_plan" "service-plan" {
   name                = "app-service-plan"
-  resource_group_name = azurerm_resource_group.resource.name
-  location            = azurerm_resource_group.resource.location
+  resource_group_name = local.name
+  location            = local.location
   os_type             = "Linux"
   sku_name            = "Y1"
 }
 
 resource "azurerm_linux_function_app" "app" {
   name                = "linux-function-app"
-  resource_group_name = azurerm_resource_group.resource.name
-  location            = azurerm_resource_group.resource.location
+  resource_group_name = local.name
+  location            = local.location
 
   storage_account_name = azurerm_storage_account.storage.name
   service_plan_id      = azurerm_service_plan.service-plan.id
