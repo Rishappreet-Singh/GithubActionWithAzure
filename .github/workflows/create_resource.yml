@@ -28,10 +28,8 @@ jobs:
 #       uses: azure/login@v1
 #       with: 
 #         creds: ${{secrets.AZURE_CREDS}}
-    - name: Azure-connect
-      run: | 
-        az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
-        az vm list-sizes --location westeurope
+#     - name: Azure-connect
+#       run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 #     - name: Run Arm
 #       uses: azure/arm-deploy@v1
 #       with: 
