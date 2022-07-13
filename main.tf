@@ -11,7 +11,7 @@ provider "azurerm" {
 }
 
 locals {
-  name     = "user_VTX8J1738E_ResourceGroup"
+  name     = "user_0LI23NQ99U_ResourceGroup"
   location = "West Europe"
 }
 
@@ -31,7 +31,7 @@ resource "azurerm_service_plan" "service-plan" {
   sku_name            = "Y1"
 }
 
-resource "azurerm_linux_function_app" "first-app" {
+resource "azurerm_linux_function_app" "app" {
   name                = "linux-function-app"
   resource_group_name = local.name
   location            = local.location
