@@ -16,7 +16,7 @@ locals {
 }
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "linuxfunctionappsa"
+  name                     = "thestoragepacket"
   resource_group_name      = local.name
   location                 = local.location
   account_tier             = "Standard"
