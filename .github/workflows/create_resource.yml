@@ -9,11 +9,11 @@ jobs:
     name: 'Azure-env'
     runs-on: ubuntu-latest
     environment: production
-#     env: 
-#       subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-#       clientId: ${{ secrets.CLIENT_ID }}
-#       clientSecret: ${{ secrets.CLIENT_SECRET }}
-#       tenantId: ${{ secrets.TENANT_ID }}
+    env: 
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION }}
+      ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
       
 
     defaults:
