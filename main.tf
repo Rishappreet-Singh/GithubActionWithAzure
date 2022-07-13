@@ -10,10 +10,6 @@ provider "azurerm" {
   features {}
 }
 
-provider "azurerm" {
-  features {}
-}
-
 local {
   name     = "user_TXM4UKZY08_ResourceGroup"
   location = "West Europe"
