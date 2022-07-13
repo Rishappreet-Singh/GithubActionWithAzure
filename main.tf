@@ -36,8 +36,8 @@ resource "azurerm_linux_function_app" "app" {
   resource_group_name = local.name
   location            = local.location
 
-  storage_account_name = azurerm_storage_account.storages.name
-  service_plan_id      = azurerm_service_plan.service-planer.id
+  storage_account_name = azurerm_storage_account.storage.name
+  service_plan_id      = azurerm_service_plan.service-plan.id
 
   site_config {}
 }
