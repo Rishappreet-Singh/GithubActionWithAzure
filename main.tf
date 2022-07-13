@@ -11,7 +11,7 @@ provider "azurerm" {
 }
 
 locals {
-  name     = "user_VMUQTRRGUZ_ResourceGroup"
+  name     = "user_VTX8J1738E_ResourceGroup"
   location = "West Europe"
 }
 
