@@ -15,16 +15,16 @@ locals {
   location = "West Europe"
 }
 
-resource "azurerm_storage_account" "storages" {
-  name                     = "thestoragepacket"
+resource "azurerm_storage_account" "storage" {
+  name                     = "demmitothemoon"
   resource_group_name      = local.name
   location                 = local.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
 
-resource "azurerm_service_plan" "service-planer" {
-  name                = "app-service-planer"
+resource "azurerm_service_plan" "service-plan" {
+  name                = "app-service-plan"
   resource_group_name = local.name
   location            = local.location
   os_type             = "Linux"
