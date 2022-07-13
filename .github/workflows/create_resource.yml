@@ -9,11 +9,11 @@ jobs:
     name: 'Azure-env'
     runs-on: ubuntu-latest
     environment: production
-    env: 
-      subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-      clientId: ${{ secrets.CLIENT_ID }}
-      clientSecret: ${{ secrets.CLIENT_SECRET }}
-      tenantId: ${{ secrets.TENANT_ID }}
+#     env: 
+#       subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+#       clientId: ${{ secrets.CLIENT_ID }}
+#       clientSecret: ${{ secrets.CLIENT_SECRET }}
+#       tenantId: ${{ secrets.TENANT_ID }}
       
 
     defaults:
@@ -25,7 +25,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Azure-connect
-      run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} -t ${{ secrets.TENANT_ID }}
+      uses: azure/login@v1
+      with: 
+        creds: ${{secrets.AZURE_CREDS}}
+#       run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} -t ${{ secrets.TENANT_ID }}
       
 #     - name: Run Arm
 #       uses: azure/arm-deploy@v1
