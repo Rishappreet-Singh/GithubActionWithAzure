@@ -24,7 +24,7 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_service_plan" "service-plan" {
-  name                = "app-service-plan"
+  name                = "app-service-planer"
   resource_group_name = local.name
   location            = local.location
   os_type             = "Linux"
