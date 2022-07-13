@@ -15,7 +15,7 @@ locals {
   location = "West Europe"
 }
 
-resource "azurerm_storage_account" "storage" {
+resource "azurerm_storage_account" "storages" {
   name                     = "thestoragepacket"
   resource_group_name      = local.name
   location                 = local.location
@@ -23,7 +23,7 @@ resource "azurerm_storage_account" "storage" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_service_plan" "service-plan" {
+resource "azurerm_service_plan" "service-planer" {
   name                = "app-service-planer"
   resource_group_name = local.name
   location            = local.location
@@ -31,13 +31,13 @@ resource "azurerm_service_plan" "service-plan" {
   sku_name            = "Y1"
 }
 
-resource "azurerm_linux_function_app" "app" {
+resource "azurerm_linux_function_app" "first-app" {
   name                = "linux-function-app"
   resource_group_name = local.name
   location            = local.location
 
-  storage_account_name = azurerm_storage_account.storage.name
-  service_plan_id      = azurerm_service_plan.service-plan.id
+  storage_account_name = azurerm_storage_account.storages.name
+  service_plan_id      = azurerm_service_plan.service-planer.id
 
   site_config {}
 }
