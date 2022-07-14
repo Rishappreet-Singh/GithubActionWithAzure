@@ -1,7 +1,7 @@
 name: 'resource-for-azure'
 
-# on: [workflow_dispatch]
-on: push
+on: [workflow_dispatch]
+# on: push
 permissions: write-all
 
 jobs:
@@ -71,6 +71,6 @@ jobs:
         func templates list -l python
 
         func start
-        func azure functionapp publish app
+        func azure functionapp publish linux-function-app-for-azure
       
 
