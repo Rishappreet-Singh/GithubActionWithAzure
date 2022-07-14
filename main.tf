@@ -34,7 +34,7 @@ resource "azurerm_servicebus_queue" "example" {
 }
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "demmier"
+  name                     = "demmierthewa"
   resource_group_name      = local.name
   location                 = local.location
   account_tier             = "Standard"
@@ -42,7 +42,7 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_service_plan" "service-plan" {
-  name                = "app-service-plan"
+  name                = "app-service-plan-tt"
   resource_group_name = local.name
   location            = local.location
   os_type             = "Linux"
