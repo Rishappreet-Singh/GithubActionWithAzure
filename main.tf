@@ -33,6 +33,15 @@ resource "azurerm_servicebus_queue" "example" {
   enable_partitioning = true
 }
 
+resource "azurerm_servicebus_namespace_authorization_rule" "example" {
+  name         = "examplerule"
+  namespace_id = azurerm_servicebus_namespace.example.id
+
+  listen = true
+  send   = true
+  manage = false
+}
+
 resource "azurerm_storage_account" "storage" {
   name                     = "demmierthewa"
   resource_group_name      = local.name
