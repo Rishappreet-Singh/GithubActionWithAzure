@@ -16,7 +16,7 @@ locals {
 }
 
 resource "azurerm_servicebus_namespace" "example" {
-  name                = "servicebus-namespace-partiern"
+  name                = "servicebus-namespacerse"
   location            = local.location
   resource_group_name = local.name
   sku                 = "Standard"
