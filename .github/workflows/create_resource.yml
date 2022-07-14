@@ -43,25 +43,26 @@ jobs:
 #         --resource-group user_KPLMMZYKUL_ResourceGroup \
 #         --subnet-name subnet-1 --subnet-prefixes 10.0.1.0/24
   
-    - name: Terraform Init
-      run: terraform init 
+#     - name: Terraform Init
+#       run: terraform init 
     
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan -input=false
-      continue-on-error: true
+#     - name: Terraform Plan
+#       id: plan
+#       run: terraform plan -input=false
+#       continue-on-error: true
       
-    - name: Terraform Plan Status
-      if: steps.plan.outcome == 'failure'
-      run: "exit 1"
+#     - name: Terraform Plan Status
+#       if: steps.plan.outcome == 'failure'
+#       run: "exit 1"
     
-    - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false
+#     - name: Terraform Apply
+#       run: terraform apply -auto-approve -input=false
 
     - name: Function Creation
       run: |
         python -m venv .venv
         source .venv/bin/activate
+        sudo apt-get install python3-venv
         func init LocalFunctionProj --python
         cd LocalFunctionProj
         func new --name Servicebuser --template "Azure Service Bus Queue trigger" --authlevel "anonymous"
