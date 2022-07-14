@@ -28,8 +28,8 @@ jobs:
 #       uses: azure/login@v1
 #       with: 
 #         creds: ${{secrets.AZURE_CREDS}}
-#     - name: Azure-connect
-#       run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+    - name: Azure-connect
+      run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 #     - name: Run Arm
 #       uses: azure/arm-deploy@v1
 #       with: 
@@ -43,20 +43,34 @@ jobs:
 #         --resource-group user_KPLMMZYKUL_ResourceGroup \
 #         --subnet-name subnet-1 --subnet-prefixes 10.0.1.0/24
   
-    - name: py check
-      run: python --version
-  
-#     - name: Terraform Init
-#       run: terraform init 
+    - name: Terraform Init
+      run: terraform init 
     
-#     - name: Terraform Plan
-#       id: plan
-#       run: terraform plan -input=false
-#       continue-on-error: true
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -input=false
+      continue-on-error: true
       
-#     - name: Terraform Plan Status
-#       if: steps.plan.outcome == 'failure'
-#       run: "exit 1"
+    - name: Terraform Plan Status
+      if: steps.plan.outcome == 'failure'
+      run: "exit 1"
     
-#     - name: Terraform Apply
-#       run: terraform apply -auto-approve -input=false
+    - name: Terraform Apply
+      run: terraform apply -auto-approve -input=false
+
+    - name: Function Creation
+      run: |
+        python -m venv .venv
+        source .venv/bin/activate
+        func init LocalFunctionProj --python
+        cd LocalFunctionProj
+        func new --name Servicebuser --template "Azure Service Bus Queue trigger" --authlevel "anonymous"
+
+
+        # for output
+        func templates list -l python
+
+        func start
+        func azure functionapp publish app
+      
+
