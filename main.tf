@@ -16,7 +16,7 @@ locals {
 }
 
 resource "azurerm_servicebus_namespace" "example" {
-  name                = "servicebus-namespace"
+  name                = "servicebus-namespace-partiern"
   location            = local.location
   resource_group_name = local.name
   sku                 = "Standard"
@@ -50,7 +50,7 @@ resource "azurerm_service_plan" "service-plan" {
 }
 
 resource "azurerm_linux_function_app" "app" {
-  name                = "linux-function-app"
+  name                = "linux-function-app-for-azure"
   resource_group_name = local.name
   location            = local.location
 
