@@ -62,7 +62,7 @@ jobs:
       run: |
         python -m venv .venv
         source .venv/bin/activate
-        sudo apt-get install python3-venv
+        npm install -g azure-functions-core-tools@4 --unsafe-perm true
         func init LocalFunctionProj --python
         cd LocalFunctionProj
         func new --name Servicebuser --template "Azure Service Bus Queue trigger" --authlevel "anonymous"
