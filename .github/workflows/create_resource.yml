@@ -43,20 +43,20 @@ jobs:
 #         --resource-group user_KPLMMZYKUL_ResourceGroup \
 #         --subnet-name subnet-1 --subnet-prefixes 10.0.1.0/24
   
-    - name: Terraform Init
-      run: terraform init 
+#     - name: Terraform Init
+#       run: terraform init 
     
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan -input=false
-      continue-on-error: true
+#     - name: Terraform Plan
+#       id: plan
+#       run: terraform plan -input=false
+#       continue-on-error: true
       
-    - name: Terraform Plan Status
-      if: steps.plan.outcome == 'failure'
-      run: "exit 1"
+#     - name: Terraform Plan Status
+#       if: steps.plan.outcome == 'failure'
+#       run: "exit 1"
     
-    - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false
+#     - name: Terraform Apply
+#       run: terraform apply -auto-approve -input=false
 
     - name: Function Creation
       run: |
@@ -71,7 +71,7 @@ jobs:
         # for output
         func templates list -l python
 
-        func start 
-        func azure functionapp publish linux-function-app-for-azure
+        func start hello
+        func azure functionapp publish linux-function-app-for-azure 
       
 
