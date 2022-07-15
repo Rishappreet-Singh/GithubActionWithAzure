@@ -76,6 +76,12 @@ resource "azurerm_function_app_function" "example" {
   test_data = jsonencode({
     "name" = "Azure"
   })
+  
+  file {
+    name    = "run py"
+    content = file("__init__.py")
+  }
+
   config_json = jsonencode(
     {
       "scriptFile": "__init__.py",
