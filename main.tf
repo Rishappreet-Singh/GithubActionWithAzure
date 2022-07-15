@@ -11,7 +11,7 @@ provider "azurerm" {
 }
 
 locals {
-  name     = "user_1TUNUPOVJW_ResourceGroup"
+  name     = "user_ZRWWHTWJH8_ResourceGroup"
   location = "West Europe"
 }
 
@@ -68,3 +68,32 @@ resource "azurerm_linux_function_app" "app" {
 
   site_config {}
 }
+
+resource "azurerm_function_app_function" "example" {
+  name            = "function-app-function"
+  function_app_id = azurerm_linux_function_app.app.id
+  language        = "Python"
+  test_data = jsonencode({
+    "name" = "Azure"
+  })
+  config_json = jsonencode({
+    "bindings" = [
+      {
+        "authLevel" = "function"
+        "direction" = "in"
+        "methods" = [
+          "get",
+          "post",
+        ]
+        "name" = "req"
+        "type" = "azureServiceBusQueueTrigger"
+      },
+      {
+        "direction" = "out"
+        "name"      = "$return"
+        "type"      = "http"
+      },
+    ]
+  })
+}
+
