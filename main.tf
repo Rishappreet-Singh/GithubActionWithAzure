@@ -81,26 +81,11 @@ resource "azurerm_function_app_function" "example" {
       "scriptFile": "__init__.py",
       "bindings": [
         {
-          "authLevel": "function",
-          "type": "httpTrigger",
-          "direction": "in",
-          "name": "req",
-          "methods": [
-            "get",
-            "post"
-          ]
-        },
-        {
-          "type": "http",
-          "direction": "out",
-          "name": "$return"
-        },
-        {
-          "type": "serviceBus",
-          "direction": "out",
-          "connection": "AzureServiceBusConnectionString",
           "name": "msg",
-          "queueName": "outqueue"
+          "type": "serviceBusTrigger",
+          "direction": "in",
+          "queueName": "inputqueue",
+          "connection": "AzureServiceBusConnectionString"
         }
       ]
     }
