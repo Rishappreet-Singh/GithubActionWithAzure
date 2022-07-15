@@ -76,24 +76,34 @@ resource "azurerm_function_app_function" "example" {
   test_data = jsonencode({
     "name" = "Azure"
   })
-  config_json = jsonencode({
-    "bindings" = [
-      {
-        "authLevel" = "function"
-        "direction" = "in"
-        "methods" = [
-          "get",
-          "post",
-        ]
-        "name" = "req"
-        "type" = "azureServiceBusQueueTrigger"
-      },
-      {
-        "direction" = "out"
-        "name"      = "$return"
-        "type"      = "http"
-      },
-    ]
-  })
+  config_json = jsonencode(
+    {
+      "scriptFile": "__init__.py",
+      "bindings": [
+        {
+          "authLevel": "function",
+          "type": "httpTrigger",
+          "direction": "in",
+          "name": "req",
+          "methods": [
+            "get",
+            "post"
+          ]
+        },
+        {
+          "type": "http",
+          "direction": "out",
+          "name": "$return"
+        },
+        {
+          "type": "serviceBus",
+          "direction": "out",
+          "connection": "AzureServiceBusConnectionString",
+          "name": "msg",
+          "queueName": "outqueue"
+        }
+      ]
+    }
+  )
 }
 
