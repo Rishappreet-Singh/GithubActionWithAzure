@@ -69,8 +69,8 @@ resource "azurerm_linux_function_app" "app" {
   site_config {}
 }
 
-resource "azurerm_function_app_function" "example" {
-  name            = "function-app-function"
+resource "azurerm_function_app_function" "func" {
+  name            = "first-func"
   function_app_id = azurerm_linux_function_app.app.id
   language        = "Python"
    
@@ -92,11 +92,9 @@ resource "azurerm_function_app_function" "example" {
           "type" = "azureServiceBusQueueTrigger"
         },
         {
-          "name" = "reqq"
-          "tyep" = "azureServiceBusQueueTrigger"
           "direction" = "out"
           "name"      = "$return"
-          "type"      = "http"
+          "type" = "azureServiceBusQueueTrigger"
         },
       ]
   })
