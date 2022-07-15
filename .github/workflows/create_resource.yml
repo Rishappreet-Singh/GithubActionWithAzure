@@ -58,20 +58,20 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
 
-    - name: Function Creation
-      run: |
-        python -m venv .venv
-        source .venv/bin/activate
-        npm install -g azure-functions-core-tools@4 --unsafe-perm true
-        func init LocalFunctionProj --python
-        cd LocalFunctionProj
-        func new --name Servicebuser --template "Azure Service Bus Queue trigger"
+#     - name: Function Creation
+#       run: |
+#         python -m venv .venv
+#         source .venv/bin/activate
+#         npm install -g azure-functions-core-tools@4 --unsafe-perm true
+#         func init LocalFunctionProj --python
+#         cd LocalFunctionProj
+#         func new --name Servicebuser --template "Azure Service Bus Queue trigger"
 
 
-        # for output
-        func templates list -l python
+#         # for output
+#         func templates list -l python
 
-        func start hello
-        func azure functionapp publish linux-function-app-for-azure 
+#         func start hello
+#         func azure functionapp publish linux-function-app-for-azure 
       
 
