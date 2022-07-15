@@ -73,28 +73,32 @@ resource "azurerm_function_app_function" "example" {
   name            = "function-app-function"
   function_app_id = azurerm_linux_function_app.app.id
   language        = "Python"
-  test_data = jsonencode({
-    "name" = "Azure"
-  })
-  
+   
   file {
     name    = "run py"
     content = file("__init__.py")
   }
 
-  config_json = jsonencode(
-    {
-      "scriptFile": "__init__.py",
-      "bindings": [
+  config_json = jsonencode({
+      "bindings" = [
         {
-          "name": "msg",
-          "type": "serviceBusTrigger",
-          "direction": "in",
-          "queueName": "inputqueue",
-          "connection": "AzureServiceBusConnectionString"
-        }
+          "authLevel" = "function"
+          "direction" = "in"
+          "methods" = [
+            "get",
+            "post",
+          ]
+          "name" = "req"
+          "type" = "azureServiceBusQueueTrigger"
+        },
+        {
+          "name" = "reqq"
+          "tyep" = "azureServiceBusQueueTrigger"
+          "direction" = "out"
+          "name"      = "$return"
+          "type"      = "http"
+        },
       ]
-    }
-  )
+  })
 }
 
