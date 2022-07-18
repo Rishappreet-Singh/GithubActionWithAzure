@@ -54,8 +54,13 @@ resource "azurerm_service_plan" "service-plan" {
   name                = "app-service-plan-tt"
   resource_group_name = local.name
   location            = local.location
+  kind                = "FunctionApp"
+  reserved = true # this has to be set to true for Linux. Not related to the Premium Plan
+  sku {
+    tier = "Dynamic"
+    size = "Y1"
+  }
   os_type             = "Linux"
-  sku_name            = "Y1"
 }
 
 resource "azurerm_linux_function_app" "app" {
@@ -65,39 +70,43 @@ resource "azurerm_linux_function_app" "app" {
 
   storage_account_name = azurerm_storage_account.storage.name
   service_plan_id      = azurerm_service_plan.service-plan.id
-
+  app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE"    = "__init__.py.zip",
+    "FUNCTIONS_WORKER_RUNTIME" = "node",
+    "AzureWebJobsDisableHomepage" = "true",
+  }
   site_config {}
 }
 
-resource "azurerm_function_app_function" "func" {
-  name            = "first-func"
-  function_app_id = azurerm_linux_function_app.app.id
-  language        = "Python"
-   
-#   file {
-#     name    = "run py"
-#     content = file("__init__.py")
-#   }
+# resource "azurerm_function_app_function" "func" {
+#   name            = "first-func"
+#   function_app_id = azurerm_linux_function_app.app.id
+#   language        = "Python"
+  
+# #   file {
+# #     name    = "run py"
+# #     content = file("__init__.py")
+# #   }
  
-  config_json = jsonencode({
-    "scriptFile": "__init__.py",
-    "bindings": [
-        {
-            "authLevel": "function",
-            "type": "httpTrigger",
-            "direction": "in",
-            "name": "req",
-            "methods": [
-                "get",
-                "post"
-            ]
-        },
-        {
-            "type": "http",
-            "direction": "out",
-            "name": "$return"
-        }
-    ]
-  })
-}
+#   config_json = jsonencode({
+#     "scriptFile": "__init__.py",
+#     "bindings": [
+#         {
+#             "authLevel": "function",
+#             "type": "httpTrigger",
+#             "direction": "in",
+#             "name": "req",
+#             "methods": [
+#                 "get",
+#                 "post"
+#             ]
+#         },
+#         {
+#             "type": "http",
+#             "direction": "out",
+#             "name": "$return"
+#         }
+#     ]
+#   })
+# }
 
