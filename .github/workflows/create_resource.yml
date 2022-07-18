@@ -14,7 +14,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "ap-southeast-1"    
 
@@ -46,7 +46,8 @@ jobs:
 #         --subnet-name subnet-1 --subnet-prefixes 10.0.1.0/24
   
     - name: Terraform Init
-      run: terraform init -backend-config="access_key=${{secrets.AWS_ACCESS_KEY}}" -backend-config="secret_key=${{secrets.AWS_SECRET_ACCESS_KEY}}" -backend-config=conf.tfvars
+      run: terraform init -backend-config=conf.tfvars
+#       run: terraform init -backend-config="access_key=${{secrets.AWS_ACCESS_KEY}}" -backend-config="secret_key=${{secrets.AWS_SECRET_ACCESS_KEY}}" -backend-config=conf.tfvars
     
     - name: Terraform Plan
       id: plan
