@@ -54,13 +54,8 @@ resource "azurerm_service_plan" "service-plan" {
   name                = "app-service-plan-tt"
   resource_group_name = local.name
   location            = local.location
-  kind                = "FunctionApp"
-  reserved = true # this has to be set to true for Linux. Not related to the Premium Plan
-  sku {
-    tier = "Dynamic"
-    size = "Y1"
-  }
   os_type             = "Linux"
+  sku_name            = "Y1"
 }
 
 resource "azurerm_linux_function_app" "app" {
