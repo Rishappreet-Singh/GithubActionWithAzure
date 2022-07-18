@@ -92,7 +92,7 @@ resource "azurerm_function_app_function" "func" {
 #   }
  
   config_json = jsonencode({
-    "scriptFile": "__init__.py",
+#     "scriptFile": "__init__.py",
     "bindings": [
         {
             "authLevel": "function",
