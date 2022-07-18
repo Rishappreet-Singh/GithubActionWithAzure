@@ -13,7 +13,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     region = "us-west-2"
-    bucket = "s3-bucket-for-my-company"
+    bucket = "folidiere"
     key = "terraform.tfstate"
   }
 }
