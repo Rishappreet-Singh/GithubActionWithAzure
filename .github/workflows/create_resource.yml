@@ -46,7 +46,7 @@ jobs:
 #         --subnet-name subnet-1 --subnet-prefixes 10.0.1.0/24
   
     - name: Terraform Init
-      run: terraform init --backend-config=conf.tfvars
+      run: terraform init -backend-config="access_key=${{secrets.AWS_ACCESS_KEY}}" -backend-config="secret_key=${{secrets.AWS_SECRET_ACCESS_KEY}}" -backend-config=conf.tfvars
     
     - name: Terraform Plan
       id: plan
