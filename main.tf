@@ -77,11 +77,7 @@ resource "azurerm_linux_function_app" "app" {
 
   storage_account_name = azurerm_storage_account.storage.name
   service_plan_id      = azurerm_service_plan.service-plan.id
-  app_settings = {
-    "WEBSITE_RUN_FROM_PACKAGE"    = "__init__.py.zip",
-    "FUNCTIONS_WORKER_RUNTIME" = "node",
-    "AzureWebJobsDisableHomepage" = "true",
-  }
+ 
   site_config {}
 }
 
