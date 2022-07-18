@@ -6,6 +6,18 @@ terraform {
   }
 }
 
+provider "aws" {
+    region = "us-west-2"
+}
+
+terraform {
+  backend "s3" {
+    region = "us-west-2"
+    bucket = "s3-bucket-for-my-company"
+    key = "terraform.tfstate"
+  }
+}
+
 provider "azurerm" {
   features {}
 }
