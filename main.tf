@@ -1,14 +1,14 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-    }
-  }
-}
+# terraform {
+#   required_providers {
+#     azurerm = {
+#       source  = "hashicorp/azurerm"
+#     }
+#   }
+# }
 
-provider "aws" {
-    region = "us-west-2"
-}
+# provider "aws" {
+#     region = "us-west-2"
+# }
 
 terraform {
   backend "s3" {
