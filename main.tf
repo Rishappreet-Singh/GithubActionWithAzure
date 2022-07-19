@@ -22,10 +22,10 @@ provider "azurerm" {
   features {}
 }
 
-# locals {
-#   name     = "user_NSQK85BSTN_ResourceGroup"
-#   location = "West Europe"
-# }
+locals {
+  name     = "user_NSQK85BSTN_ResourceGroup"
+  location = "West Europe"
+}
 
 # resource "azurerm_servicebus_namespace" "example" {
 #   name                = "servicebus-namespacerse"
@@ -114,11 +114,6 @@ provider "azurerm" {
 # }
 
 
-
-locals local {
-  name     = "user_NSQK85BSTN_ResourceGroup"
-  location = "West Europe"
-}
 
 resource "azurerm_storage_account" "example" {
   name                     = "storgaeers"
