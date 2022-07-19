@@ -23,7 +23,7 @@ provider "azurerm" {
 }
 
 locals {
-  name     = "user_WTMWTL6ZH6_ResourceGroup"
+  name     = "user_NSQK85BSTN_ResourceGroup"
   location = "West Europe"
 }
 
